@@ -1,7 +1,7 @@
 variable "name" {
   description = "Security Group Name"
   type        = string
-  default     = "tfe-sg"
+  default     = "sg"
 }
 
 variable "description" {
@@ -32,17 +32,18 @@ variable "sg_rules_cidr" {
     protocol          = string
     security_group_id = string
   }))
-  default = {
-    ssh = {
-      description       = "Terraform Cloud application via HTTP"
-      type              = "ingress"
-      cidr_blocks       = ["0.0.0.0/0"]
-      from_port         = 0
-      to_port           = 0
-      protocol          = -1
-      security_group_id = "default"
-    }
-  }
+  default = {}
+  # default = {
+  #   ssh = {
+  #     description       = "Terraform Cloud application via HTTP"
+  #     type              = "ingress"
+  #     cidr_blocks       = ["0.0.0.0/0"]
+  #     from_port         = 0
+  #     to_port           = 0
+  #     protocol          = -1
+  #     security_group_id = "default"
+  #   }
+  # }
 }
 
 variable "sg_rules_sgid" {
@@ -56,15 +57,16 @@ variable "sg_rules_sgid" {
     protocol                 = string
     security_group_id        = string
   }))
-  default = {
-    ssh = {
-      description              = "Terraform Cloud application via HTTP"
-      type                     = "ingress"
-      source_security_group_id = "default"
-      from_port                = 0
-      to_port                  = 0
-      protocol                 = -1
-      security_group_id        = "default"
-    }
-  }
+  default = {}
+  # default = {
+  #   ssh = {
+  #     description              = "Terraform Cloud application via HTTP"
+  #     type                     = "ingress"
+  #     source_security_group_id = "default"
+  #     from_port                = 0
+  #     to_port                  = 0
+  #     protocol                 = -1
+  #     security_group_id        = "default"
+  #   }
+  # }
 }
